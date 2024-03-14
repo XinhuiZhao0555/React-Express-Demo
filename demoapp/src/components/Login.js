@@ -38,7 +38,7 @@ export default function Login({ users, setLoggedIn, setUsername }) {
         if(user.length === 1){
             setUsername(user[0].username);
             setLoggedIn(true);
-            navigate('/');
+            navigate('/home');
         }else{
             setLoginError('account does not exist');
         }

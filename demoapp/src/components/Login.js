@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 
 export default function Login({ users, setLoggedIn, setUsername }) {
     const [email, setEmail] = useState('');
@@ -52,27 +55,24 @@ export default function Login({ users, setLoggedIn, setUsername }) {
             </div>
             <br />
             <div className={'inputContainer'}>
-                <input
-                    value={email}
-                    placeholder="Enter your email here"
-                    onChange={(e) => setEmail(e.target.value)}
-                    className={'inputBox'}
-                />
+                <TextField id="outlined-basic" label="Enter your email here" variant="outlined" 
+                className={'inputBox'}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)} />
                 <label className="errorLabel">{emailError}</label>
             </div>
             <br />
             <div className={'inputContainer'}>
-                <input
-                    value={password}
-                    placeholder="Enter your password here"
-                    onChange={(e) => setPassword(e.target.value)}
-                    className={'inputBox'}
-                />
+                <TextField id="outlined-basic" label="Enter your password here" variant="outlined" 
+                className={'inputBox'} 
+                type='password'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)} />
                 <label className="errorLabel">{passwordError}</label>
             </div>
             <br />
             <div className={'inputContainer'}>
-                <input className={'inputButton'} type="button" onClick={handleSubmit} value={'Log in'} />
+                <Button className={'inputButton'} variant="contained" type="submit" onClick={handleSubmit}>Login</Button>
                 <label className="errorLabel">{loginError}</label>
             </div>
         </div>

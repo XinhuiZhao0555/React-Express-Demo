@@ -14,10 +14,14 @@ export default function NavigationBar({ username, loggedIn, setLoggedIn }) {
         if (loggedIn) {
             //localStorage.removeItem('user');
             setLoggedIn(false);
+            navigate('/');
         } else {
             navigate('/login');
         }
     };
+
+    const handleNavToHome = () => {navigate('/home')};
+    const handleNavToStock = () => {navigate('/stock')};
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -32,10 +36,21 @@ export default function NavigationBar({ username, loggedIn, setLoggedIn }) {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                        <Button
+                            onClick={handleNavToHome}
+                            sx={{ my: 2, color: 'white', display: 'block' }}
+                        > 
                         Home
-                    </Typography>
-                    <div>{loggedIn ? <div>Welcome! {username}</div> : <div />}</div>
+                        </Button>
+                        <Button
+                            onClick={handleNavToStock}
+                            sx={{ my: 2, color: 'white', display: 'block' }}
+                        > 
+                        Stock
+                        </Button>
+                    </Box>
+                    <Box style={{margin:'auto'}}>{loggedIn ? <div>Welcome! {username}</div> : <div />}</Box>
                     <Button color="inherit" onClick={onClickLogin}>{loggedIn ? 'Logout' : 'Login'}</Button>
                 </Toolbar>
             </AppBar>

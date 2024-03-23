@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavigationBar from './components/NaviBar';
 import PrivateRoute from './components/PrivateRoute';
 import Stock from './components/Stock';
+import Contact from './components/Contact';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -24,11 +25,12 @@ function App() {
       <BrowserRouter>
         <NavigationBar username={username} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
         <Routes>
+          <Route path="/" element={<Home username={username} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
+          <Route path="/login" element={<Login users={users} setLoggedIn={setLoggedIn} setUsername={setUsername}/>} />
           <Route element={<PrivateRoute loggedIn={loggedIn}/>}>
-            <Route path="/home" element={<Home />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/stock" element={<Stock />}/>
           </Route>
-          <Route path="/login" element={<Login users={users} setLoggedIn={setLoggedIn} setUsername={setUsername}/>} />
         </Routes>
       </BrowserRouter>
     </div>

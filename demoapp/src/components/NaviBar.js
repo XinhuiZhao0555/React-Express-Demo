@@ -20,8 +20,9 @@ export default function NavigationBar({ username, loggedIn, setLoggedIn }) {
         }
     };
 
-    const handleNavToHome = () => {navigate('/home')};
+    const handleNavToHome = () => {navigate('/')};
     const handleNavToStock = () => {navigate('/stock')};
+    const handleNavToContact = () => {navigate('/contact')};
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -48,6 +49,12 @@ export default function NavigationBar({ username, loggedIn, setLoggedIn }) {
                             sx={{ my: 2, color: 'white', display: 'block' }}
                         > 
                         Stock
+                        </Button>
+                        <Button
+                            onClick={handleNavToContact}
+                            sx={{ my: 2, color: 'white', display: 'block' }}
+                        > 
+                        Contact
                         </Button>
                     </Box>
                     <Box style={{margin:'auto'}}>{loggedIn ? <div>Welcome! {username}</div> : <div />}</Box>

@@ -6,7 +6,7 @@ export default function Home({ username, loggedIn, setLoggedIn }) {
 
     const onClickLogin = () => {
         if (loggedIn) {
-            //localStorage.removeItem('user');
+            localStorage.removeItem('user');
             setLoggedIn(false);
             navigate('/');
         } else {

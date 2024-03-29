@@ -7,7 +7,7 @@ import Account from './models/account.js'
 
 // Initialize Express app
 const app = express()
-const port = 3000
+const port = 3080
 
 // Define a JWT secret key. This should be isolated by using env variables for security
 const jwtSecretKey = 'dsfdsfsdfdsvcsvdfgefg'
@@ -48,7 +48,7 @@ app.post('/register', async (req, res) => {
 })
 
 //find user by email
-app.get('/login', async (req, res) => {
+app.post('/login', async (req, res) => {
 
     // Look up the user email in the database
     const user = await Account.find({email : req.body.email}).exec();
@@ -68,7 +68,7 @@ app.get('/login', async (req, res) => {
                 }
 
                 const token = jwt.sign(loginData, jwtSecretKey)
-                res.status(200).json({ message: 'success', token })
+                res.status(200).json({ message: 'success', username: user[0].username, token })
             }
         })
     }else {// If no user is found

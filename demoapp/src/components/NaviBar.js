@@ -12,7 +12,7 @@ export default function NavigationBar({ username, loggedIn, setLoggedIn }) {
     const navigate = useNavigate();
     const onClickLogin = () => {
         if (loggedIn) {
-            //localStorage.removeItem('user');
+            localStorage.removeItem('user');
             setLoggedIn(false);
             navigate('/');
         } else {

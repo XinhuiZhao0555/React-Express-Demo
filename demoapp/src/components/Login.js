@@ -41,7 +41,7 @@ export default function Login({ setLoggedIn, setUsername }) {
             if (password) setBtnDisabled(false);
         }
     }
-    
+
     const validatePassword = (value) => {
         setPassword(value);
         if (value === '') { 
@@ -90,15 +90,15 @@ export default function Login({ setLoggedIn, setUsername }) {
     return (
         <Grid container component="main" style={{ height: "100vh" }}>
             <CssBaseline />
-            <Grid item xs={false} sm={4} md={7} style={{
+            <Grid item xs={false} sm={4} md={8} style={{
                 backgroundImage: "url(https://source.unsplash.com/random)",
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundPosition: "center"
             }} />
-            <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+            <Grid item xs={12} sm={8} md={4} component={Paper} elevation={6} square>
                 <div style={{
-                    margin: theme.spacing(8, 4),
+                    margin: theme.spacing(10, 20),
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center"

@@ -20,13 +20,14 @@ export default function NavigationBar({ username, loggedIn, setLoggedIn }) {
         }
     };
 
-    const handleNavToHome = () => {navigate('/')};
-    const handleNavToStock = () => {navigate('/stock')};
-    const handleNavToContact = () => {navigate('/contact')};
+    const handleNavToHome = () => { navigate('/') };
+    const handleNavToStock = () => { navigate('/stock') };
+    const handleNavToContact = () => { navigate('/contact') };
+    const handleNavToFeedback = () => { navigate('/feedback') };
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
+            <AppBar position="static" style={{ backgroundColor: "#B947DF" }}>
                 <Toolbar>
                     <IconButton
                         size="large"
@@ -38,27 +39,42 @@ export default function NavigationBar({ username, loggedIn, setLoggedIn }) {
                         <MenuIcon />
                     </IconButton>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        <Button
-                            onClick={handleNavToHome}
+                        <Typography component="h1" variant="h6" 
+                            style={{ fontWeight: "bold", color: 'white', marginRight: "20px" }}
                             sx={{ my: 2, color: 'white', display: 'block' }}
-                        > 
-                        Home
-                        </Button>
-                        <Button
+                            onClick={handleNavToHome}>
+                            Home
+                        </Typography>
+                        <Typography component="h1" variant="h6"
+                            style={{ fontWeight: "bold", color: 'white', marginRight: "20px" }}
                             onClick={handleNavToStock}
                             sx={{ my: 2, color: 'white', display: 'block' }}
-                        > 
-                        Stock
-                        </Button>
-                        <Button
+                        >
+                            Stock
+                        </Typography>
+                        <Typography component="h1" variant="h6"
+                            style={{ fontWeight: "bold", color: 'white', marginRight: "20px" }}
                             onClick={handleNavToContact}
                             sx={{ my: 2, color: 'white', display: 'block' }}
-                        > 
-                        Contact
-                        </Button>
+                        >
+                            Contact
+                        </Typography>
+                        <Typography component="h1" variant="h6"
+                            style={{ fontWeight: "bold", color: 'white', marginRight: "20px" }}
+                            onClick={handleNavToFeedback}
+                            sx={{ my: 2, color: 'white', display: 'block' }}
+                        >
+                            Feedback
+                        </Typography>
                     </Box>
-                    <Box style={{margin:'auto'}}>{loggedIn ? <div>Welcome! {username}</div> : <div />}</Box>
-                    <Button color="inherit" onClick={onClickLogin}>{loggedIn ? 'Logout' : 'Login'}</Button>
+                    <Box style={{ marginRight: '20px' }}>
+                        <Typography style={{ fontWeight: "bold", color: 'white'}}>
+                            {loggedIn ? <div>Welcome {username}!</div> : <div />}
+                        </Typography>
+                    </Box> 
+                    <Box>
+                        <Button color="inherit" onClick={onClickLogin} style={{backgroundColor: "#55076F"}}>{loggedIn ? 'Logout' : 'Login'}</Button>
+                    </Box>
                 </Toolbar>
             </AppBar>
         </Box>

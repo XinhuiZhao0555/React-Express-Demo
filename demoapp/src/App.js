@@ -8,6 +8,7 @@ import NavigationBar from './components/NaviBar';
 import PrivateRoute from './components/PrivateRoute';
 import Stock from './components/Stock';
 import Contact from './components/Contact';
+import Feedback from './components/Feedback';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -45,9 +46,11 @@ function App() {
           <Route path="/" element={<Home username={username} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setUsername={setUsername}/>} />
           <Route path="/register" element={<Register/>} />
+
           <Route element={<PrivateRoute loggedIn={loggedIn}/>}>
             <Route path="/contact" element={<Contact />} />
-            <Route path="/stock" element={<Stock />}/>
+            <Route path="/stock" element={<Stock />} />
+            <Route path="/feedback" element={<Feedback/>} />
           </Route>
         </Routes>
       </BrowserRouter>

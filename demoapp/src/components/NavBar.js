@@ -7,13 +7,18 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
+import { logout } from '../redux/loginSlice';
 
-export default function NavigationBar({ username, loggedIn, setLoggedIn }) {
+export default function NavBar({ username }) {
     const navigate = useNavigate();
+    const loggedIn = useSelector((state) => state.loggedIn.value)
+    const dispatch = useDispatch()
+
     const onClickLogin = () => {
         if (loggedIn) {
             localStorage.removeItem('user');
-            setLoggedIn(false);
+            dispatch(logout());
             navigate('/');
         } else {
             navigate('/login');

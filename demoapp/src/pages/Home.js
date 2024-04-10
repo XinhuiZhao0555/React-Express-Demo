@@ -2,20 +2,25 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Grid from "@mui/material/Grid";
 import CssBaseline from "@mui/material/CssBaseline";
-import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from '@mui/material/Button';
 import { createTheme } from '@mui/material';
+//import { SignedIn, SignedOut, SignInButton, SignOutButton, useUser } from '@clerk/clerk-react'
+import { useSelector, useDispatch } from 'react-redux'
+import { logout } from '../redux/loginSlice';
 
-export default function Home({ username, loggedIn, setLoggedIn }) {
+export default function Home({ username }) {
+    //const { user } = useUser()
     const theme = createTheme();
     const navigate = useNavigate();
+    const loggedIn = useSelector((state) => state.loggedIn.value)
+    const dispatch = useDispatch()
 
     const handleClickLogin = () => {
         if (loggedIn) {
             localStorage.removeItem('user');
-            setLoggedIn(false);
+            dispatch(logout());
             navigate('/');
         } else {
             navigate('/login');
@@ -42,7 +47,7 @@ export default function Home({ username, loggedIn, setLoggedIn }) {
                     margin: theme.spacing(20, 0),
                     width: "50%"
                 }}>
-                    <Typography component="h1" variant="h4" style={{margin: theme.spacing(6, 0, 0), fontWeight: "bold", color: 'white'}}>
+                    <Typography component="h1" variant="h4" style={{ margin: theme.spacing(6, 0, 0), fontWeight: "bold", color: 'white' }}>
                         Welcome {loggedIn ? username : ''}!
                     </Typography>
                     <Button
@@ -54,6 +59,19 @@ export default function Home({ username, loggedIn, setLoggedIn }) {
                     >
                         {loggedIn ? 'Logout' : 'Login'}
                     </Button>
+
+                    {/* authe button with Clerk
+                    <SignedOut>
+                        <SignInButton>
+                            <input className={'inputButton'} type="button" value={'Log in'} />
+                        </SignInButton>
+                    </SignedOut>
+                    <SignedIn>
+                        <SignOutButton>
+                            <input className={'inputButton'} type="button" value={'Log out'} />
+                        </SignOutButton>
+                    </SignedIn> */}
+
                     <Box mt={5} style={{ margin: theme.spacing(10, 0, 3) }}>
                         <Typography variant="body2" color="textSecondary" align="center" >
                             Built by Natalie.

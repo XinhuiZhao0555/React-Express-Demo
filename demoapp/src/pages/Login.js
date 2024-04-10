@@ -19,10 +19,13 @@ import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { useDispatch } from 'react-redux'
+import { login} from '../redux/loginSlice';
 
-export default function Login({ setLoggedIn, setUsername }) {
+export default function Login({ setUsername }) {
     const theme = createTheme();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -78,7 +81,7 @@ export default function Login({ setLoggedIn, setUsername }) {
             .then((response) => {
                 if ('success' === response.message) {
                     localStorage.setItem('user', JSON.stringify({ username: response.username, email, token: response.token }))
-                    setLoggedIn(true)
+                    dispatch(login())
                     setUsername(response.username)
                     navigate('/')
                 } else {
@@ -98,7 +101,7 @@ export default function Login({ setLoggedIn, setUsername }) {
             }} />
             <Grid item xs={12} sm={8} md={4} component={Paper} elevation={6} square>
                 <div style={{
-                    margin: theme.spacing(10, 20),
+                    margin: theme.spacing(10, 10),
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center"
